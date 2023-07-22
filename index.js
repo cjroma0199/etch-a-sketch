@@ -1,3 +1,4 @@
+const canvas = document.querySelector(".canvas");
 const colorInput = document.querySelector("#color");
 const selectColorParagraph = document.querySelector(".select-color");
 const customButton = document.querySelector("#custom");
@@ -5,6 +6,8 @@ const rainbowButton = document.querySelector("#rainbow");
 const shaderButton = document.querySelector("#shader");
 const eraserButton = document.querySelector("#eraser");
 const buttons = document.querySelectorAll(".button");
+const slider = document.querySelector("#canvas-slider");
+const sliderValue = document.querySelector(".slider-value");
 
 const isButtonActive = (button) => {
   return Object.values(button.classList).includes("active-mode");
@@ -49,4 +52,15 @@ buttons.forEach((button) => {
     removeActiveButton(this);
     setActiveButton(this);
   });
+});
+
+slider.addEventListener("input", function () {
+  sliderValue.textContent = `Canvas Size: ${this.value}`;
+});
+
+colorInput.addEventListener("input", function () {
+  [shaderButton, customButton, eraserButton].forEach((button) => {
+    button.style.borderColor = colorInput.value;
+  });
+  slider.style.accentColor = colorInput.value;
 });

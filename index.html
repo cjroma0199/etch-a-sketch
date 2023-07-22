@@ -15,23 +15,25 @@
             <input type="color" id="color" name="color" value="#000000" />
             <p class="select-color">Choose a Color</p>
           </div>
-          <button id="custom" class="button shadow">Custom Color</button>
+          <button id="custom" class="button shadow active-mode">
+            Custom Color
+          </button>
           <button id="rainbow" class="button shadow">Rainbow</button>
           <button id="shader" class="button shadow">Shader</button>
           <button id="eraser" class="button shadow">Eraser</button>
         </div>
         <div class="draw_zone">
-          <div class="canvas"></div>
+          <div class="canvas" draggable="false"></div>
           <div class="slider">
             <input
               type="range"
               name="Canvas Size"
-              id="canvas-size"
+              id="canvas-slider"
               min="1"
               max="64"
               value="16"
             />
-            <p class="silder-value">Canvas Size:</p>
+            <p class="slider-value">Canvas Size: 16</p>
           </div>
         </div>
       </div>
