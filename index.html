@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1 class="header">Etch-a-Sketch</h1>
+    <div class="container">
+      <div class="draw">
+        <div class="features">
+          <div class="color-picker shadow">
+            <input type="color" id="color" name="color" value="#FF0000" />
+            <p class="input-color">Choose a Color</p>
+          </div>
+          <button id="custom" class="button shadow">Custom Color</button>
+          <button id="rainbow" class="button shadow">Rainbow</button>
+          <button id="shader" class="button shadow">Shader</button>
+          <button id="eraser" class="button shadow">Eraser</button>
+        </div>
+        <div class="draw_zone">
+          <div class="canvas"></div>
+          <div class="slider">
+            <input
+              type="range"
+              name="Canvas Size"
+              id="canvas-size"
+              min="16"
+              max="64"
+              value="16"
+            />
+            <p class="silder-value">Canvas Size:</p>
+          </div>
+        </div>
+      </div>
+      <div class="inspiration"></div>
+      <!-- credits to @PugglesaurusRex from Pixilart -->
+      <!-- https://www.pixilart.com/pugglesaurusrex -->
+    </div>
+    <footer></footer>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
