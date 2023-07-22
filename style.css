@@ -52,6 +52,18 @@ h1 {
 input[type="color"] {
   appearance: none;
   -moz-appearance: none;
+  rainbow:hover {
+    border-left: 8px solid transparent;
+    border-image: linear-gradient(
+      to top,
+      #b827fc 0%,
+      #2c90fc 25%,
+      #b8fd33 50%,
+      #fec837 75%,
+      #fd1892 100%
+    );
+    border-image-slice: 1;
+  }
   -webkit-appearance: none;
   background: none;
   border: 0;
