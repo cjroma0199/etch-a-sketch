@@ -43,7 +43,7 @@ h1 {
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.21);
 }
 
-.input-color {
+.select-color {
   font-size: 1.1;
   margin: 5px;
   text-align: center;
@@ -71,22 +71,6 @@ input[type="color"] {
 
 .button:hover {
   cursor: pointer;
-  border-left: 5px solid transparent;
-  border-image: linear-gradient(to top, #ffffff00 0%, #080808 100%);
-  border-image-slice: 1;
-}
-
-#rainbow:hover {
-  border-left: 5px solid transparent;
-  border-image: linear-gradient(
-    to top,
-    #b827fc 0%,
-    #2c90fc 25%,
-    #b8fd33 50%,
-    #fec837 75%,
-    #fd1892 100%
-  );
-  border-image-slice: 1;
 }
 
 *:focus {
@@ -110,6 +94,10 @@ input[type="color"] {
 
 ::-moz-focus-inner {
   padding: 0;
+}
+
+.active-mode {
+  border-left: 8px solid;
 }
 
 .canvas {
