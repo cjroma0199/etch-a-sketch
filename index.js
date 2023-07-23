@@ -115,9 +115,36 @@ function custom() {
   return toRGBA(colorInput.value);
 }
 
+function getBaseColor(color, start = "(", end = ")") {
+  char1 = rgba.indexOf(start) + 2;
+  char2 = rgba.lastIndexOf(end);
+  return rgba.substring(char1, char2);
+}
 function shader(pixel) {
-  if (!pixel.classList.includes("shaded")) pixel.classList.add("shaded");
-  const color = pixel.style.backgroundColor;
+  const currentColor = pixel.style.backgroundColor;
+  const color = colorInput.value;
+  const currentOpacity = +opacity.get(currentColor);
+
+  if (
+    isClassActive(pixel, "shaded") &&
+    toRGBA(color, currentOpacity) == currentColor
+  ) {
+    return opacity.replace(
+      currentColor,
+      currentOpacity,
+      +currentOpacity.toFixed(1) + 0.1
+    );
+  }
+  console.log(currentOpacity);
+  if (
+    (toRGBA(color, currentOpacity) != currentColor &&
+      !isClassActive(pixel, "shaded")) ||
+    (toRGBA(color, currentOpacity) == currentColor &&
+      isClassActive(pixel, "shaded"))
+  ) {
+    pixel.classList.add("shaded");
+    return opacity.set(color, 0.1);
+  }
 }
 
 function clear() {
@@ -129,7 +156,9 @@ function toRGBA(color, opacity = 1) {
   const green = parseInt(color.substr(3, 2), 16);
   const blue = parseInt(color.substr(5, 2), 16);
 
-  if (opacity >= 1) opacity = 1;
+  if (opacity >= 1 || opacity == 1) {
+    return `rgba(${red}, ${green}, ${blue})`;
+  }
 
   return `rgba(${red}, ${green}, ${blue}, ${opacity})`;
 }
@@ -173,7 +202,6 @@ function activateCanvas() {
     pixel.addEventListener("mouseover", () => {
       if (!mouse) return;
       draw(pixel, getActiveMode(pixel));
-      console.log(getActiveMode(pixel));
     });
     pixel.addEventListener("click", () => {
       draw(pixel, getActiveMode(pixel));
