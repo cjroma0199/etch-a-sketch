@@ -135,6 +135,7 @@ input[type="color"] {
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
+  background-color: white;
 }
 
 .slider {
@@ -145,7 +146,7 @@ input[type="color"] {
   gap: 10px;
 }
 .border-grid {
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(146, 146, 146, 0.1);
 }
 
 .grid-on {
