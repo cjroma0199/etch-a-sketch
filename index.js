@@ -1,21 +1,21 @@
-const canvas = document.querySelector(".canvas");
-const colorInput = document.querySelector("#color");
-const selectColorParagraph = document.querySelector(".select-color");
-const customButton = document.querySelector("#custom");
-const rainbowButton = document.querySelector("#rainbow");
-const shaderButton = document.querySelector("#shader");
-const eraserButton = document.querySelector("#eraser");
-const buttons = document.querySelectorAll(".button");
-const slider = document.querySelector("#canvas-slider");
-const sliderValue = document.querySelector(".slider-value");
-const clearButton = document.querySelector("#clear");
-const gridButton = document.querySelector("#grid");
+const canvas = document.querySelector('.canvas');
+const colorInput = document.querySelector('#color');
+const selectColorParagraph = document.querySelector('.select-color');
+const customButton = document.querySelector('#custom');
+const rainbowButton = document.querySelector('#rainbow');
+const shaderButton = document.querySelector('#shader');
+const eraserButton = document.querySelector('#eraser');
+const buttons = document.querySelectorAll('.button');
+const slider = document.querySelector('#canvas-slider');
+const sliderValue = document.querySelector('.slider-value');
+const clearButton = document.querySelector('#clear');
+const gridButton = document.querySelector('#grid');
 const pixels = canvas.childNodes;
 
 const canvasWith = canvas.offsetWidth;
 const canvasHeight = canvas.offsetHeight;
 
-const COLOR_WHITE = "rgb(255, 255, 255)";
+const COLOR_WHITE = 'rgb(255, 255, 255)';
 
 let mouse = 0;
 
@@ -27,45 +27,45 @@ const isClassActive = (element, strClass) => {
 
 function removeActiveButton(button) {
   buttons.forEach((btn) => {
-    btn.classList.remove("active-mode");
-    if (btn != button && !isGrid(btn)) btn.style.border = "none";
+    btn.classList.remove('active-mode');
+    if (btn != button && !isGrid(btn)) btn.style.border = 'none';
   });
 }
 
 const setActiveButton = (button) => {
   if (isGrid(button)) return;
-  button.classList.add("active-mode");
+  button.classList.add('active-mode');
 };
 
 const isGrid = (button) => {
-  return button.id == "grid";
+  return button.id == 'grid';
 };
 
 const isClearButton = (button) => {
-  return button.id == "clear";
+  return button.id == 'clear';
 };
 
 function hoverOut() {
-  if (!isClassActive(this, "active-mode") && !isClassActive(this, "grid-on"))
-    this.style.border = "none";
+  if (!isClassActive(this, 'active-mode') && !isClassActive(this, 'grid-on'))
+    this.style.border = 'none';
 }
 
 const toggleGrid = () => {
-  if (gridButton.classList.toggle("grid-on")) {
-    gridButton.textContent = "Grid: On";
-    pixels.forEach((pixel) => pixel.classList.add("border-grid"));
+  if (gridButton.classList.toggle('grid-on')) {
+    gridButton.textContent = 'Grid: On';
+    pixels.forEach((pixel) => pixel.classList.add('border-grid'));
     return;
   }
-  gridButton.textContent = "Grid: Off";
-  pixels.forEach((pixel) => pixel.classList.remove("border-grid"));
+  gridButton.textContent = 'Grid: Off';
+  pixels.forEach((pixel) => pixel.classList.remove('border-grid'));
 };
 
 const isActiveMode = (mode) => {
-  return mode == document.querySelector(".active-mode").id;
+  return mode == document.querySelector('.active-mode').id;
 };
 
 function hoverOver() {
-  if (this.id != "rainbow") {
+  if (this.id != 'rainbow') {
     this.style.borderLeft = `8px solid ${colorInput.value}`;
     return;
   }
@@ -88,11 +88,11 @@ function clearCanvas() {
 
 function createPixel(number) {
   for (let i = 0; i < number * number; i++) {
-    const div = document.createElement("div");
-    div.classList.add("pixel");
-    div.classList.add("border-grid");
+    const div = document.createElement('div');
+    div.classList.add('pixel');
+    div.classList.add('border-grid');
     div.style.minWidth = `${canvasWith / number}px`;
-    div.setAttribute("draggable", "false");
+    div.setAttribute('draggable', 'false');
     canvas.appendChild(div);
   }
 }
@@ -107,7 +107,8 @@ function rainbow() {
   )}, 1)`;
 }
 
-function eraser() {
+function eraser(pixel) {
+  if (isClassActive(pixel, 'shaded')) pixel.classList.remove('shaded');
   return COLOR_WHITE;
 }
 
@@ -115,40 +116,35 @@ function custom() {
   return toRGBA(colorInput.value);
 }
 
-function getBaseColor(color, start = "(", end = ")") {
+function getBaseColor(color, start = '(', end = ')') {
   char1 = rgba.indexOf(start) + 2;
   char2 = rgba.lastIndexOf(end);
   return rgba.substring(char1, char2);
 }
+
 function shader(pixel) {
   const currentColor = pixel.style.backgroundColor;
   const color = colorInput.value;
   const currentOpacity = +opacity.get(currentColor);
 
   if (
-    isClassActive(pixel, "shaded") &&
+    isClassActive(pixel, 'shaded') &&
     toRGBA(color, currentOpacity) == currentColor
   ) {
-    return opacity.replace(
-      currentColor,
-      currentOpacity,
-      +currentOpacity.toFixed(1) + 0.1
-    );
+    return opacity.replace(currentColor, (currentOpacity + 0.1).toFixed(1));
   }
-  console.log(currentOpacity);
-  if (
-    (toRGBA(color, currentOpacity) != currentColor &&
-      !isClassActive(pixel, "shaded")) ||
-    (toRGBA(color, currentOpacity) == currentColor &&
-      isClassActive(pixel, "shaded"))
-  ) {
-    pixel.classList.add("shaded");
+
+  if (toRGBA(color) != currentColor && !isClassActive(pixel, 'shaded')) {
+    pixel.classList.add('shaded');
     return opacity.set(color, 0.1);
   }
 }
 
 function clear() {
-  pixels.forEach((pixel) => (pixel.style.backgroundColor = COLOR_WHITE));
+  pixels.forEach((pixel) => {
+    pixel.style.backgroundColor = COLOR_WHITE;
+    if (isClassActive(pixel, 'shaded')) pixel.classList.remove('shaded');
+  });
 }
 
 function toRGBA(color, opacity = 1) {
@@ -164,23 +160,30 @@ function toRGBA(color, opacity = 1) {
 }
 
 const opacity = {
-  get: function (rgba, start = ",", end = ")") {
+  color: 'red',
+  get: function (rgba, start = ',', end = ')') {
     char1 = rgba.lastIndexOf(start) + 2;
     char2 = rgba.lastIndexOf(end);
     return rgba.substring(char1, char2);
   },
-  replace: function (color, remove, set) {
-    return color.replace(remove, set);
+  replace: function (color, set) {
+    return color.replace(this.get(color), set);
   },
   set: function (color, opacity) {
     return toRGBA(color, opacity);
   },
 };
 
+function removeShade() {
+  pixels.forEach((pixel) => {
+    if (isClassActive(pixel, 'shaded')) pixel.classList.remove('shaded');
+  });
+}
+
 function getActiveMode(pixel) {
-  if (isActiveMode("custom")) return custom();
-  if (isActiveMode("rainbow")) return rainbow();
-  if (isActiveMode("eraser")) return eraser();
+  if (isActiveMode('custom')) return custom();
+  if (isActiveMode('rainbow')) return rainbow();
+  if (isActiveMode('eraser')) return eraser(pixel);
   return shader(pixel);
 }
 
@@ -189,31 +192,31 @@ function draw(pixel, color) {
 }
 
 function isMouseDown() {
-  document.addEventListener("mousedown", function (e) {
+  document.addEventListener('mousedown', function (e) {
     mouse = true;
   });
-  document.addEventListener("mouseup", function (e) {
+  document.addEventListener('mouseup', function (e) {
     mouse = false;
   });
 }
 
 function activateCanvas() {
   pixels.forEach((pixel) => {
-    pixel.addEventListener("mouseover", () => {
+    pixel.addEventListener('mouseover', () => {
       if (!mouse) return;
       draw(pixel, getActiveMode(pixel));
     });
-    pixel.addEventListener("click", () => {
+    pixel.addEventListener('click', () => {
       draw(pixel, getActiveMode(pixel));
     });
   });
 }
 
 buttons.forEach((button) => {
-  button.addEventListener("mouseover", hoverOver);
-  button.addEventListener("mouseout", hoverOut);
+  button.addEventListener('mouseover', hoverOver);
+  button.addEventListener('mouseout', hoverOut);
 
-  button.addEventListener("click", function () {
+  button.addEventListener('click', function () {
     if (isClearButton(button)) {
       clear();
       return;
@@ -224,19 +227,19 @@ buttons.forEach((button) => {
   });
 });
 
-gridButton.addEventListener("click", function () {
+gridButton.addEventListener('click', function () {
   toggleGrid();
 });
 
-slider.addEventListener("input", function () {
+slider.addEventListener('input', function () {
   sliderValue.textContent = `Canvas Size: ${this.value}`;
   clearCanvas();
   createPixel(this.value);
 });
 
-slider.addEventListener("change", activateCanvas);
+slider.addEventListener('change', activateCanvas);
 
-colorInput.addEventListener("input", function () {
+colorInput.addEventListener('input', function () {
   [shaderButton, customButton, eraserButton, gridButton, clearButton].forEach(
     (button) => {
       button.style.borderColor = colorInput.value;
@@ -244,6 +247,8 @@ colorInput.addEventListener("input", function () {
   );
   slider.style.accentColor = colorInput.value;
 });
+
+colorInput.addEventListener('change', removeShade);
 
 if (!canvas.lastChild) createPixel(slider.value);
 
