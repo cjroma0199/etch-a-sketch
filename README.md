@@ -1,10 +1,8 @@
-Sure, here's the modified version of the readme file with the title "Etch a Sketch" as the largest heading, followed by "Features" as the subheading:
-
 # Etch a Sketch
 
 ## Features:
 
-## Canvas: Etch a Sketch provides a canvas area where users can draw. The size of the canvas can be adjusted using a slider, allowing users to create drawings of different sizes.
+- **Canvas:** Etch a Sketch provides a canvas area where users can draw. The size of the canvas can be adjusted using a slider, allowing users to create drawings of different sizes.
 
 - **Color Selection:** Users can choose a custom color to draw with using an input field. The color can be selected using the color picker, which updates the chosen color as the user interacts with it.
 
@@ -19,7 +17,7 @@ Sure, here's the modified version of the readme file with the title "Etch a Sket
 
 - **Clear Canvas:** Etch a Sketch provides a "Clear" button that clears the entire canvas, removing all drawings and resetting it to a blank state.
 
-**Description:**
+## Description:
 
 Etch a Sketch is a simple drawing application that lets users draw and create art on a virtual canvas. Users can select different drawing modes like custom, rainbow, shader, and eraser, allowing them to draw with their chosen color or have fun with random rainbow colors. The shader mode adds shading effects to the drawings, making them more visually interesting.
 
@@ -28,7 +26,3 @@ To use Etch a Sketch, simply drag the mouse on the canvas to draw. The color can
 **Note:**
 
 This project was completed as an assignment from The Odin Project, an open-source curriculum for learning web development.
-
----
-
-Now, the title "Etch a Sketch" stands out as the largest heading, and "Features" is the subheading under which the features are listed. The rest of the content remains the same. You can use this version as the readme file for your GitHub repository.
