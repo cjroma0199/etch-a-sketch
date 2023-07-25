@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
   </head>
   <body>
     <h1 class="header">Etch-a-Sketch</h1>
@@ -15,9 +16,7 @@
             <input type="color" id="color" name="color" value="#000000" />
             <p class="select-color">Choose a Color</p>
           </div>
-          <button id="custom" class="button shadow active-mode">
-            Custom Color
-          </button>
+          <button id="custom" class="button shadow active-mode">Custom Color</button>
           <button id="rainbow" class="button shadow">Rainbow</button>
           <button id="shader" class="button shadow">Shader</button>
           <button id="eraser" class="button shadow">Eraser</button>
@@ -39,11 +38,30 @@
           </div>
         </div>
       </div>
-      <div class="inspiration"></div>
+      <div class="inspiration">
+        <img class="mySlides" src="./img/cabbage_pult.png" />
+        <img class="mySlides" src="./img/cactus.png" />
+        <img class="mySlides" src="./img/cattail.png" />
+        <img class="mySlides" src="./img/cob_cannon.png" />
+        <img class="mySlides" src="./img/grave_buster.png" />
+        <img class="mySlides" src="./img/hypno_shroom.png" />
+        <img class="mySlides" src="./img/starfruit.png" />
+        <img class="mySlides" src="./img/winter_melon.png" />
+        <div class="slides-button">
+          <button class="w3-button w3-black" onclick="plusDivs(-1)">&#10094;</button>
+          <button class="w3-button w3-black" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+      </div>
       <!-- credits to @PugglesaurusRex from Pixilart -->
       <!-- https://www.pixilart.com/pugglesaurusrex -->
     </div>
-    <footer></footer>
+    <footer>
+      <p>
+        &copy; 2023
+        <a href="https://github.com/cjroma0199" target="_blank">cjroma0199</a>. |
+        <a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a>
+      </p>
+    </footer>
 
     <script src="./index.js"></script>
   </body>

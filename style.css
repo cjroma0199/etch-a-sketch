@@ -1,12 +1,13 @@
 /* background color: #f3edff
 canvas: #ffffff
-
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Helvetica";
+  font-family: 'Helvetica';
 }
 
 body {
@@ -16,20 +17,27 @@ body {
   -webkit-box-sizing: border-box;
 }
 
-h1 {
+.header {
   text-align: center;
-  margin: 50px 0;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 5em;
+  font-family: 'Handjet', cursive;
+  font-weight: 500;
 }
 .container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .draw {
-  width: 70%;
   display: flex;
-  gap: 10%;
+  gap: 50px;
+  max-width: 772px;
+  margin-right: 3em;
 }
 
 .features {
@@ -50,7 +58,7 @@ h1 {
   text-align: center;
 }
 
-input[type="color"] {
+input[type='color'] {
   appearance: none;
   -moz-appearance: none;
   rainbow:hover {
@@ -70,8 +78,8 @@ input[type="color"] {
   border: 0;
   cursor: pointer;
   padding: 0;
-  width: 12em;
-  height: 8em;
+  width: 10em;
+  height: 7em;
 }
 
 .button {
@@ -119,7 +127,6 @@ input[type="color"] {
 .canvas {
   width: 560px;
   height: 560px;
-  cursor: crosshair;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.21);
   -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.21);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.21);
@@ -146,15 +153,49 @@ input[type="color"] {
   gap: 10px;
 }
 .border-grid {
-  border: 1px solid rgba(146, 146, 146, 0.1);
+  border: 1px solid rgba(146, 146, 146, 0.2);
 }
 
 .grid-on {
   border-left: 8px solid;
 }
 
-input[type="range"] {
+input[type='range'] {
   width: 80%;
   text-align: center;
   accent-color: black;
+}
+
+.inspiration {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mySlides {
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.21);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.21);
+  width: 560px;
+  background: white;
+}
+
+footer {
+  background-color: #000000;
+  color: #d4d4d4;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  margin-top: 100px;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }

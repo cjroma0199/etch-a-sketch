@@ -101,10 +101,9 @@ function randomNumber(range) {
   return Math.floor(Math.random() * range + 1);
 }
 
-function rainbow() {
-  return `rgb(${randomNumber(255)} ,${randomNumber(255)}, ${randomNumber(
-    255
-  )}, 1)`;
+function rainbow(pixel) {
+  if (isClassActive(pixel, 'shaded')) pixel.classList.remove('shaded');
+  return `rgb(${randomNumber(255)} ,${randomNumber(255)}, ${randomNumber(255)}, 1)`;
 }
 
 function eraser(pixel) {
@@ -112,7 +111,8 @@ function eraser(pixel) {
   return COLOR_WHITE;
 }
 
-function custom() {
+function custom(pixel) {
+  if (isClassActive(pixel, 'shaded')) pixel.classList.remove('shaded');
   return toRGBA(colorInput.value);
 }
 
@@ -127,10 +127,7 @@ function shader(pixel) {
   const color = colorInput.value;
   const currentOpacity = +opacity.get(currentColor);
 
-  if (
-    isClassActive(pixel, 'shaded') &&
-    toRGBA(color, currentOpacity) == currentColor
-  ) {
+  if (isClassActive(pixel, 'shaded') && toRGBA(color, currentOpacity) == currentColor) {
     return opacity.replace(currentColor, (currentOpacity + 0.1).toFixed(1));
   }
 
@@ -160,7 +157,6 @@ function toRGBA(color, opacity = 1) {
 }
 
 const opacity = {
-  color: 'red',
   get: function (rgba, start = ',', end = ')') {
     char1 = rgba.lastIndexOf(start) + 2;
     char2 = rgba.lastIndexOf(end);
@@ -181,8 +177,8 @@ function removeShade() {
 }
 
 function getActiveMode(pixel) {
-  if (isActiveMode('custom')) return custom();
-  if (isActiveMode('rainbow')) return rainbow();
+  if (isActiveMode('custom')) return custom(pixel);
+  if (isActiveMode('rainbow')) return rainbow(pixel);
   if (isActiveMode('eraser')) return eraser(pixel);
   return shader(pixel);
 }
@@ -254,3 +250,27 @@ if (!canvas.lastChild) createPixel(slider.value);
 
 activateCanvas();
 isMouseDown();
+
+// slidesShow
+
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs((slideIndex += n));
+}
+
+function showDivs(n) {
+  let i;
+  let img = document.getElementsByClassName('mySlides');
+  if (n > img.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = img.length;
+  }
+  for (i = 0; i < img.length; i++) {
+    img[i].style.display = 'none';
+  }
+  img[slideIndex - 1].style.display = 'block';
+}
