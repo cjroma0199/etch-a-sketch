@@ -1,8 +1,10 @@
-_Etch a Sketch_
+Sure, here's the modified version of the readme file with the title "Etch a Sketch" as the largest heading, followed by "Features" as the subheading:
 
-**Features:**
+# Etch a Sketch
 
-- **Canvas:** Etch a Sketch provides a canvas area where users can draw. The size of the canvas can be adjusted using a slider, allowing users to create drawings of different sizes.
+## Features:
+
+## Canvas: Etch a Sketch provides a canvas area where users can draw. The size of the canvas can be adjusted using a slider, allowing users to create drawings of different sizes.
 
 - **Color Selection:** Users can choose a custom color to draw with using an input field. The color can be selected using the color picker, which updates the chosen color as the user interacts with it.
 
@@ -28,3 +30,5 @@ To use Etch a Sketch, simply drag the mouse on the canvas to draw. The color can
 This project was completed as an assignment from The Odin Project, an open-source curriculum for learning web development.
 
 ---
+
+Now, the title "Etch a Sketch" stands out as the largest heading, and "Features" is the subheading under which the features are listed. The rest of the content remains the same. You can use this version as the readme file for your GitHub repository.
